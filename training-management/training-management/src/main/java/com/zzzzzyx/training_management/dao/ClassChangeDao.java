@@ -9,4 +9,8 @@ public interface ClassChangeDao {
 	public boolean save(ClassChange newClass);
 	
 	public List<ClassChange> getAll();
+
+	public ClassChange getClassChangeById(long changeId);
+
+	public void deleteClassChangeById(long changeId);
 }

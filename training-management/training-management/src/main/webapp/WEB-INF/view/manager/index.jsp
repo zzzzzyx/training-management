@@ -11,8 +11,9 @@
 <title>登录</title>
 </head>
 <body>
-	<h2>经理首页</h2>
+	<h1>经理首页</h1>
 	<table border="1">
+	<caption>待审核的课程变动</caption>
 		<thead>
 			<tr>
 				<th>课程名</th>
@@ -39,8 +40,8 @@
 			<td><jsp:getProperty name="singleClassChange" property="institution_id" /></td>
 			<td><jsp:getProperty name="singleClassChange" property="description" /></td>
 			<td><jsp:getProperty name="singleClassChange" property="changeKind" /></td>
-			<td><a href="allow.do?change-id=<%=classChangeList.get(i).getId()%>"><input type="button" value="同意"></a>
-			<a href="deny.do?change-id=<%=classChangeList.get(i).getId()%>"><input type="button" value="拒绝"></a></td>
+			<td><a href="allow.do?changeId=<%=classChangeList.get(i).getId()%>"><input type="button" value="同意"></a>
+			<a href="deny.do?changeId=<%=classChangeList.get(i).getId()%>"><input type="button" value="拒绝"></a></td>
 		</tr>
 		<% } %>
 			

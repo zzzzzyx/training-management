@@ -11,23 +11,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zzzzzyx.training_management.model.ClassChange;
-import com.zzzzzyx.training_management.service.ClassService;
+import com.zzzzzyx.training_management.service.ClassChangeService;
 
 @Controller
-public class OpenClassController {
+public class ClassChangeApplyController {
 	
 	@Autowired
-	private ClassService classService;
+	private ClassChangeService classService;
 
 	@RequestMapping(value = "institution/openClass.do", method = RequestMethod.GET)
-    public ModelAndView index(){
+    public ModelAndView openIndex(){
         return new ModelAndView("institution/openClass","command", new ClassChange());
     }
 	
 	@RequestMapping(value = "institution/openClass.do", method = RequestMethod.POST)
-    public ModelAndView open(@ModelAttribute("SpringWeb")ClassChange newClass, ModelMap model, HttpSession session){
-		System.out.println((long)session.getAttribute("auth_id"));
+    public String openPost(@ModelAttribute("SpringWeb")ClassChange newClass, HttpSession session){
 		classService.openClass(newClass,(long)session.getAttribute("auth_id"));
-        return new ModelAndView("institution/openClass","command", new ClassChange());
+		return "redirect:index.do";
     }
 }

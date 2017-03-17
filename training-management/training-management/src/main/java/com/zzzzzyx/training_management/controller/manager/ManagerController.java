@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zzzzzyx.training_management.model.ClassChange;
-import com.zzzzzyx.training_management.service.ClassService;
+import com.zzzzzyx.training_management.service.ClassChangeService;
 
 @Controller
 public class ManagerController {
 
 	@Autowired
-	private ClassService classService;
+	private ClassChangeService classService;
 	
     @RequestMapping(value = "manager/index.do", method = RequestMethod.GET)
     public ModelAndView index(ModelMap model){
