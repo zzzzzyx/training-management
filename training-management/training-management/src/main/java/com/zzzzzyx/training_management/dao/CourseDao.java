@@ -12,4 +12,8 @@ public interface CourseDao {
 
 	List<Course> getCourseListByInsId(long institution_id);
 
+	Course getCourseById(long courseId);
+
+	void update(Course newCourse);
+
 }

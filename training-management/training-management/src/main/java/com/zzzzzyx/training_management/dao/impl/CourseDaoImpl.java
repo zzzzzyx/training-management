@@ -38,4 +38,16 @@ public class CourseDaoImpl implements CourseDao {
 		return criteria.list();
 	}
 
+	@Override
+	public Course getCourseById(long courseId) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Course.class);
+		criteria.add(Restrictions.eq("id", courseId));
+		return (Course) criteria.uniqueResult();
+	}
+
+	@Override
+	public void update(Course newCourse) {
+		sessionFactory.getCurrentSession().update(newCourse);
+	}
+
 }

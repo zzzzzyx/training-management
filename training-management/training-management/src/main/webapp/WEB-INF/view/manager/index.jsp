@@ -21,6 +21,7 @@
 				<th>价格</th>
 				<th>开始时间</th>
 				<th>结束时间</th>
+				<th>课程状态</th>
 				<th>机构id</th>
 				<th>描述</th>
 				<th>变动类别</th>
@@ -37,6 +38,7 @@
 			<td><jsp:getProperty name="singleClassChange" property="price" /></td>
 			<td><jsp:getProperty name="singleClassChange" property="startTime" /></td>
 			<td><jsp:getProperty name="singleClassChange" property="endTime" /></td>
+			<td><jsp:getProperty name="singleClassChange" property="course_status" /></td>
 			<td><jsp:getProperty name="singleClassChange" property="institution_id" /></td>
 			<td><jsp:getProperty name="singleClassChange" property="description" /></td>
 			<td><jsp:getProperty name="singleClassChange" property="changeKind" /></td>

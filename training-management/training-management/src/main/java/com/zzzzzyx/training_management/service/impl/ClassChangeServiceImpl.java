@@ -44,9 +44,12 @@ public class ClassChangeServiceImpl implements ClassChangeService {
 			courseDao.deleteCourseById(classChange.getCourse_id());
 			break;
 		case ClassChange.ChangeKind_change:
-		case ClassChange.ChangeKind_register:
 			Course newCourse = new Course(classChange);
-			courseDao.save(newCourse);
+			courseDao.update(newCourse);
+			break;
+		case ClassChange.ChangeKind_register:
+			Course newCourse2 = new Course(classChange);
+			courseDao.save(newCourse2);
 			break;
 		}
 		classChangeDao.deleteClassChangeById(changeId);
@@ -60,6 +63,28 @@ public class ClassChangeServiceImpl implements ClassChangeService {
 	@Override
 	public List<Course> getCourseListByInsId(long institution_id) {
 		return courseDao.getCourseListByInsId(institution_id);
+	}
+
+	@Override
+	public void deleteClass(long courseId) {
+		Course course = courseDao.getCourseById(courseId);
+		ClassChange classChange = new ClassChange(course);
+		classChange.setChangeKind(ClassChange.ChangeKind_delete);
+		classChange.setDescription("Institution " + classChange.getInstitution_id() + " apply for deleting a new course.");
+		classChangeDao.save(classChange);
+	}
+
+	@Override
+	public Course getCourseById(long courseId) {
+		return courseDao.getCourseById(courseId);
+	}
+
+	@Override
+	public void changeClass(ClassChange newClassChange, long ins_id) {
+		newClassChange.setChangeKind(ClassChange.ChangeKind_change);
+		newClassChange.setInstitution_id(ins_id);
+		newClassChange.setDescription("¸ü¸ÄÇ°£º " + courseDao.getCourseById(newClassChange.getCourse_id()));
+		classChangeDao.save(newClassChange);
 	}
 
 }

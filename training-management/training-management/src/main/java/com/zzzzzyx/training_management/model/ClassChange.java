@@ -31,6 +31,16 @@ public class ClassChange {
 		super();
 		// TODO 自动生成的构造函数存根
 	}
+	public ClassChange(Course course) {
+		this.course_id = course.id;
+		this.courseName = course.courseName;
+		this.teacherName = course.teacherName;
+		this.price = course.price;
+		this.startTime = course.startTime;
+		this.endTime = course.endTime;
+		this.institution_id = course.institution_id;
+		this.course_status = course.status;
+	}
 	public long getId() {
 		return id;
 	}
