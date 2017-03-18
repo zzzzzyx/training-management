@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zzzzzyx.training_management.model.Authentication;
-import com.zzzzzyx.training_management.service.UserService;
+import com.zzzzzyx.training_management.service.AuthService;
 
 @Controller
 @SessionAttributes("auth_id")  
 public class AuthController {
 
 	@Autowired
-	private UserService userService;
+	private AuthService userService;
 	
     @RequestMapping(value = "/index.do", method = RequestMethod.GET)
     public ModelAndView index(){
@@ -36,12 +36,9 @@ public class AuthController {
     		switch(realUser.getUserKind()){
 			case Authentication.UserKind_Institution:return "redirect:institution/index.do";
 			case Authentication.UserKind_Manager:return "redirect:manager/index.do";
-			case Authentication.UserKind_User:
-				break;
-			default:
-				break;
+			case Authentication.UserKind_User:return "redirect:user/index.do";
+			default: return "redirect:index.do";//不应该跳入此项
     		}
-			return "redirect:index.do";
     	}
     }
     

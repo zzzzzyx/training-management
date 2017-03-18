@@ -7,4 +7,6 @@ public interface AuthDao {
 	public boolean save(Authentication auth);
 	
 	public Authentication getByUsername(String username);
+
+	public long getBankCardNumberById(long fromUserId);
 }

@@ -17,6 +17,7 @@ public class Authentication {
 	long id;
 	String username;
 	String password;
+	long bankCardNumber;
 	String userKind;
 	
 	public static final String UserKind_User = "User";
@@ -25,7 +26,15 @@ public class Authentication {
 	
 	public Authentication() {
 	}
-	
+
+	public long getBankCardNumber() {
+		return bankCardNumber;
+	}
+
+	public void setBankCardNumber(long bankCardNumber) {
+		this.bankCardNumber = bankCardNumber;
+	}
+
 	public String getUsername() {
 		return username;
 	}

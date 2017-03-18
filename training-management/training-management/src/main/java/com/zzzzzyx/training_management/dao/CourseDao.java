@@ -16,4 +16,6 @@ public interface CourseDao {
 
 	void update(Course newCourse);
 
+	List<Course> getAvailableCourseList();
+
 }

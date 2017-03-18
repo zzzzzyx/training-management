@@ -28,5 +28,12 @@ public class AuthDaoImpl implements AuthDao{
 		return (Authentication) criteria.uniqueResult();
 	}
 
+	@Override
+	public long getBankCardNumberById(long fromUserId) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Authentication.class);
+		criteria.add(Restrictions.eq("id", fromUserId));
+		return ((Authentication) criteria.uniqueResult()).getBankCardNumber();
+	}
+
 	
 }

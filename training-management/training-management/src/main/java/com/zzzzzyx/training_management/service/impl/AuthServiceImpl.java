@@ -6,11 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zzzzzyx.training_management.dao.AuthDao;
 import com.zzzzzyx.training_management.model.Authentication;
-import com.zzzzzyx.training_management.service.UserService;
+import com.zzzzzyx.training_management.service.AuthService;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class AuthServiceImpl implements AuthService {
 
 	@Autowired
 	AuthDao authDao;

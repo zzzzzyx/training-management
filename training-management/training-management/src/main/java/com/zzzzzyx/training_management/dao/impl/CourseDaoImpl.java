@@ -50,4 +50,12 @@ public class CourseDaoImpl implements CourseDao {
 		sessionFactory.getCurrentSession().update(newCourse);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Course> getAvailableCourseList() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Course.class);
+		criteria.add(Restrictions.eq("status", Course.Status_waiting));
+		return criteria.list();
+	}
+
 }
