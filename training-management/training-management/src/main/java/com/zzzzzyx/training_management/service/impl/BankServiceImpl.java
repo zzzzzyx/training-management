@@ -53,4 +53,9 @@ public class BankServiceImpl implements BankService {
 		waitingPaymentDao.delete(wp);
 	}
 
+	@Override
+	public void payActivation(long cardNumber) {
+		bankAccountDao.addMoneyOfAnAccount(cardNumber, -1000);
+	}
+
 }

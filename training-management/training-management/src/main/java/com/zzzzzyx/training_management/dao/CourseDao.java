@@ -18,4 +18,6 @@ public interface CourseDao {
 
 	List<Course> getAvailableCourseList();
 
+	List<Course> getAllAttendingCourseByUserId(long user_id);
+
 }

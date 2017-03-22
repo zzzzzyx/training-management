@@ -21,4 +21,10 @@ public class StudyController {
 		studyService.attendCourse(courseId, (long)session.getAttribute("auth_id"));
 		return "redirect:index.do";
     }
+	
+	@RequestMapping(value = "user/cancel.do", method = RequestMethod.GET)
+    public String cancel(ModelMap model, long courseId, HttpSession session){
+		studyService.cancelCourse(courseId, (long)session.getAttribute("auth_id"));
+		return "redirect:index.do";
+    }
 }

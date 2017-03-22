@@ -10,4 +10,6 @@ public interface StudyConnectionDao {
 
 	void save(StudyConnection s);
 
+	void deleteConnectionByCourseIdAndUserID(long courseId, long userId);
+
 }

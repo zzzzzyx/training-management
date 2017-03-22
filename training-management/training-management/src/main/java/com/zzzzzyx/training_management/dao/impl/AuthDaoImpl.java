@@ -35,5 +35,27 @@ public class AuthDaoImpl implements AuthDao{
 		return ((Authentication) criteria.uniqueResult()).getBankCardNumber();
 	}
 
+	@Override
+	public long getIdByUsername(String username) {
+		return this.getByUsername(username).getId();
+	}
+
+	@Override
+	public void bindBankAccount(long cardNumber, long auth_id) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Authentication.class);
+		criteria.add(Restrictions.eq("id", auth_id));
+		Authentication auth = (Authentication) criteria.uniqueResult();
+		auth.setBankCardNumber(cardNumber);
+		sessionFactory.getCurrentSession().save(auth);
+	}
+
+	@Override
+	public void deleteUserById(long auth_id) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Authentication.class);
+		criteria.add(Restrictions.eq("id", auth_id));
+		Authentication c = (Authentication) criteria.uniqueResult();
+		sessionFactory.getCurrentSession().delete(c);
+	}
+
 	
 }

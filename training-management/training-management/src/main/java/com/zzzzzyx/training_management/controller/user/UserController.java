@@ -9,22 +9,37 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.zzzzzyx.training_management.model.Course;
+import com.zzzzzyx.training_management.service.AuthService;
 import com.zzzzzyx.training_management.service.StudyService;
 
 @Controller
 public class UserController {
 
 	@Autowired
-	private StudyService studyService;
+	StudyService studyService;
+	
+	@Autowired
+	AuthService authService;
 	
     @RequestMapping(value = "user/index.do", method = RequestMethod.GET)
-    public ModelAndView index(ModelMap model, HttpSession session){
+    public String index(ModelMap model, HttpSession session){
+    	
     	long user_id = (long)session.getAttribute("auth_id");
+    	if(authService.needActivate(user_id)){
+			return "redirect:activate.do";
+		}
+    	if(authService.isSuspended(user_id)){
+			return "user/suspended";
+		}
+    	
     	List<Course> courseList = studyService.getAvailableCourseListByUserId(user_id);
     	model.addAttribute("courseList", courseList);
-        return new ModelAndView("user/index");
+    	
+    	List<Course> attendingCourseList = studyService.getAttendingCourseListByUserId(user_id);
+    	model.addAttribute("attendingCourseList", attendingCourseList);
+    	
+        return "user/index";
     }
 }

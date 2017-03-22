@@ -10,4 +10,8 @@ public interface StudyService {
 
 	void attendCourse(long attendId, long attribute);
 
+	List<Course> getAttendingCourseListByUserId(long user_id);
+
+	void cancelCourse(long courseId, long attribute);
+
 }

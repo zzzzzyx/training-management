@@ -40,6 +40,12 @@ public class StudyServiceImpl implements StudyService {
 		}
 		return availableList;
 	}
+	
+	@Override
+	public List<Course> getAttendingCourseListByUserId(long user_id) {
+		List<Course> courseList = courseDao.getAllAttendingCourseByUserId(user_id);
+		return courseList;
+	}
 
 	@Override
 	public void attendCourse(long courseId, long user_id) {
@@ -49,13 +55,30 @@ public class StudyServiceImpl implements StudyService {
 		s.setUser_id(user_id);
 		s.setInstitution_id(course.getInstitution_id());
 		s.setPaymentMethod(StudyConnection.PaymentMethod_card);
-		s.setStatus(StudyConnection.Status_payed);
 		s.setUser(true);
 		studyConnectionDao.save(s);
 		
 		bankService.transferUnderSupervision(user_id, course.getInstitution_id(), course.getPrice(),
-				"User(id:" + user_id + ") applying for attending course(id:" + courseId + ") holding by institution(id:"
+				"User(id:" + user_id + ") 申请加入课程(id:" + courseId + ") holding by institution(id:"
 				 + course.getInstitution_id() + ").");
+	}
+
+	@Override
+	public void cancelCourse(long courseId, long userId) {
+		studyConnectionDao.deleteConnectionByCourseIdAndUserID(courseId, userId);
+		Course course = courseDao.getCourseById(courseId);
+		switch(course.getStatus()){
+		case Course.Status_waiting:
+			bankService.transferUnderSupervision(course.getInstitution_id(), userId, course.getPrice(),
+					"User(id:" + userId + ") 申请取消预订课程(课程id:" + courseId + ") holding by institution(id:"
+					 + course.getInstitution_id() + "), 系统判定全额退款.");
+			break;
+		case Course.Status_studying:
+			bankService.transferUnderSupervision(course.getInstitution_id(), userId, course.getPrice()/5,
+					"User(id:" + userId + ") 申请取消退出进行中的课程(课程id:" + courseId + ") holding by institution(id:"
+					 + course.getInstitution_id() + "), 系统判定退款20%.");
+			break;
+		}
 	}
 
 

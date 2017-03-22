@@ -17,16 +17,9 @@ public class StudyConnection {
 	long course_id;
 	long institution_id;
 	String paymentMethod;
-	String status;
 	int mark;
 	boolean isUser;//学员是否为会员
 	boolean nameIfNotUser;
-	
-	public static final String Status_payed = "payed";
-	public static final String Status_unsubscribe = "unsubscribe";
-	public static final String Status_studying = "studying";
-	public static final String Status_cancelled = "cancelled";
-	public static final String Status_end = "end";
 	
 	public static final String PaymentMethod_cash = "cash";
 	public static final String PaymentMethod_card = "card";
@@ -86,14 +79,6 @@ public class StudyConnection {
 
 	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public int getMark() {

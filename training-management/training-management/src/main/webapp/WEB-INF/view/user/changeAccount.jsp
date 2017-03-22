@@ -5,28 +5,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>注册</title>
+<title>更改银行卡绑定</title>
 </head>
 <body>
-    <h2>注册</h2>
-	<form:form method="POST" action="register.do">
+    <h2>更改银行卡绑定</h2>
+    
+	<form:form method="POST" action="changeBankAccount.do">
    <table>
     <tr>
-        <td><form:label path="username">用户名：</form:label></td>
-        <td><form:input path="username" /></td>
+        <td><form:label path="cardNumber">卡号：</form:label></td>
+        <td><form:input path="cardNumber" /></td>
     </tr>
     <tr>
         <td><form:label path="password">密码：</form:label></td>
         <td><form:password path="password" /></td>
     </tr>
     <tr>
-        <td><form:label path="password">注册类别：</form:label></td>
-        <td><form:radiobutton path="userKind" value="User" label="学员" />
-<form:radiobutton path="userKind" value="Institution" label="机构" /></td>
-    </tr>
-    <tr>
         <td colspan="2">
-            <input type="submit" value="提交"/>
+            <input type="submit" value="更改"/>
         </td>
     </tr>
 </table>  

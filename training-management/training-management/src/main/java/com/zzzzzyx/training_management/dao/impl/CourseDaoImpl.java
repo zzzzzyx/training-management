@@ -58,4 +58,13 @@ public class CourseDaoImpl implements CourseDao {
 		return criteria.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Course> getAllAttendingCourseByUserId(long user_id) {
+		List<Course> l = sessionFactory.getCurrentSession().createQuery(
+				"select c from StudyConnection sc,Course c where sc.user_id = :user_id and c.id=sc.course_id")
+				.setLong("user_id", user_id).list();
+		return l;
+	}
+
 }

@@ -23,6 +23,17 @@ public class BankAccountDaoImpl implements BankAccountDao {
 		bankAccount.setMoney(bankAccount.getMoney() + money);
 		sessionFactory.getCurrentSession().save(bankAccount);
 	}
+
+	@Override
+	public long getMoneyByNoAndPsw(BankAccount bankAccount) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(BankAccount.class);
+		criteria.add(Restrictions.eq("cardNumber", bankAccount.getCardNumber()));
+		criteria.add(Restrictions.eq("password", bankAccount.getPassword()));
+		if(criteria.list().isEmpty()){
+			return -1;
+		}
+		return ((BankAccount)criteria.uniqueResult()).getMoney();
+	}
 	
 	
 }

@@ -12,4 +12,6 @@ public interface BankService {
 
 	void solvePayment(long paymentId);
 
+	void payActivation(long cardNumber);
+
 }

@@ -30,7 +30,6 @@ public class AuthController {
     	if(realUser == null){
     		return "loginFail";
     	}else{
-    		
     		model.addAttribute("auth_id", realUser.getId());
     		
     		switch(realUser.getUserKind()){
