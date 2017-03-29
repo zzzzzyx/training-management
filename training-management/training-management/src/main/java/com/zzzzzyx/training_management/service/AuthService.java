@@ -18,4 +18,8 @@ public interface AuthService {
 	public void withdrawUser(long attribute);
 
 	public boolean isSuspended(long user_id);
+
+	public long getPoint(long attribute);
+
+	public void pointToCash(long attribute);
 }

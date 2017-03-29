@@ -14,7 +14,7 @@ import com.zzzzzyx.training_management.service.StudyService;
 public class StudyController {
 
 	@Autowired
-	private StudyService studyService;
+	StudyService studyService;
 	
 	@RequestMapping(value = "user/attend.do", method = RequestMethod.GET)
     public String attend(ModelMap model, long courseId, HttpSession session){
@@ -27,4 +27,6 @@ public class StudyController {
 		studyService.cancelCourse(courseId, (long)session.getAttribute("auth_id"));
 		return "redirect:index.do";
     }
+	
+	
 }

@@ -3,6 +3,7 @@ package com.zzzzzyx.training_management.dao;
 import java.util.List;
 
 import com.zzzzzyx.training_management.model.Course;
+import com.zzzzzyx.training_management.vo.Course4UserVO;
 
 public interface CourseDao {
 
@@ -18,6 +19,6 @@ public interface CourseDao {
 
 	List<Course> getAvailableCourseList();
 
-	List<Course> getAllAttendingCourseByUserId(long user_id);
+	List<Course4UserVO> getAllAttendingCourseVOByUserId(long user_id);
 
 }

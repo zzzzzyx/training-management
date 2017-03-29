@@ -1,8 +1,5 @@
 package com.zzzzzyx.training_management.service.impl;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +12,7 @@ import com.zzzzzyx.training_management.model.BankAccount;
 import com.zzzzzyx.training_management.model.User;
 import com.zzzzzyx.training_management.service.AuthService;
 import com.zzzzzyx.training_management.service.BankService;
+import com.zzzzzyx.training_management.service.LogService;
 
 @Service
 @Transactional
@@ -28,6 +26,8 @@ public class AuthServiceImpl implements AuthService {
 	BankAccountDao bankAccountDao;
 	@Autowired
 	BankService bankService;
+	@Autowired
+	LogService logService;
 	
 	@Override
 	public boolean register(Authentication user) {
@@ -37,7 +37,6 @@ public class AuthServiceImpl implements AuthService {
 			long user_id = authDao.getIdByUsername(user.getUsername());
 			User u = new User();
 			u.setAuth_id(user_id);
-			u.setLevel(0);
 			u.setPoint(0);
 			u.setStatus(User.Status_unactivated);
 			userDao.save(u);
@@ -70,6 +69,7 @@ public class AuthServiceImpl implements AuthService {
 		long money = bankAccountDao.getMoneyByNoAndPsw(bankAccount);
 		if(money >= 1000){
 			bankService.payActivation(bankAccount.getCardNumber());
+			logService.logActivation(auth_id);
 			authDao.bindBankAccount(bankAccount.getCardNumber(), auth_id);
 			userDao.toActivatedStatusAndRenewActivationDate(auth_id);
 		}
@@ -92,11 +92,11 @@ public class AuthServiceImpl implements AuthService {
 	@Override
 	public boolean isSuspended(long auth_id) {
 		User user = userDao.getByUserId(auth_id);
-		long timeDiv = new Date().getTime() - user.getActivationTime().getTime();
-        long dayDiv = timeDiv /( 1000 * 24 * 60 * 60);
+        long dayDiv = user.getLastActivationTillToday();
         
         if(dayDiv > 365 * 2){
         	this.withdrawUser(auth_id);//超过一年，注销账户
+        	return true;
         }
         else if(dayDiv > 365){
         	long bankAccountNo = authDao.getBankCardNumberById(auth_id);
@@ -108,6 +108,18 @@ public class AuthServiceImpl implements AuthService {
         	}
         }
 		return false;
+	}
+
+	@Override
+	public long getPoint(long user_id) {
+		return userDao.getPointByUserId(user_id);
+	}
+
+	@Override
+	public void pointToCash(long user_id) {
+		long point = userDao.getPointByUserId(user_id);
+		userDao.setPointToZero(user_id);
+		bankAccountDao.addMoneyOfAnAccount(authDao.getBankCardNumberById(user_id), point/2);
 	}
 
 }

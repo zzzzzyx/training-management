@@ -13,11 +13,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>经理首页</title>
 </head>
 <body>
+<div class="col-md-12 center"  style="
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;">
 	<h1>经理首页</h1>
-	<table border="1">
+	<table class="table">
 	<caption>待审核的课程变动</caption>
 		<thead>
 			<tr>
@@ -47,15 +55,15 @@
 			<td><jsp:getProperty name="singleClassChange" property="institution_id" /></td>
 			<td><jsp:getProperty name="singleClassChange" property="description" /></td>
 			<td><jsp:getProperty name="singleClassChange" property="changeKind" /></td>
-			<td><a href="allow.do?changeId=<%=classChangeList.get(i).getId()%>"><input type="button" value="同意"></a>
-			<a href="deny.do?changeId=<%=classChangeList.get(i).getId()%>"><input type="button" value="拒绝"></a></td>
+			<td><a href="allow.do?changeId=<%=classChangeList.get(i).getId()%>"><input type="button" class="btn btn-success" value="同意"></a>
+			<a href="deny.do?changeId=<%=classChangeList.get(i).getId()%>"><input type="button" class="btn btn-danger" value="拒绝"></a></td>
 		</tr>
 		<% } %>
 			
 		</tbody>
 	</table>
 	
-	<table border="1">
+	<table class="table">
 	<caption>待结算的资金流动</caption>
 		<thead>
 			<tr>
@@ -75,13 +83,17 @@
 			<td><jsp:getProperty name="singleWaitingPayment" property="toCardNumber" /></td>
 			<td><jsp:getProperty name="singleWaitingPayment" property="money" /></td>
 			<td><jsp:getProperty name="singleWaitingPayment" property="description" /></td>
-			<td><a href="solve.do?paymentId=<%=waitingPaymentList.get(i).getId()%>"><input type="button" value="结算"></a></td>
+			<td><a href="solve.do?paymentId=<%=waitingPaymentList.get(i).getId()%>"><input type="button" class="btn btn-warning" value="结算"></a></td>
 		</tr>
 		<% } %>
 			
 		</tbody>
 	</table>
-	
-	
+	<div style="padding : 1.2em 0px;">
+	<a href="insStatistics.do"><input type="button" class="btn btn-default" value="机构统计"></a>
+	<a href="userStatistics.do"><input type="button" class="btn btn-default" value="学员统计"></a>
+	<a href="collegeStatistics.do"><input type="button" class="btn btn-default" value="学院财务情况"></a>
+	</div>
+	</div>
 </body>
 </html>

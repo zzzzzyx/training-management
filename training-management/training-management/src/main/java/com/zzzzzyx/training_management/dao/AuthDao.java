@@ -1,5 +1,7 @@
 package com.zzzzzyx.training_management.dao;
 
+import java.util.List;
+
 import com.zzzzzyx.training_management.model.Authentication;
 
 public interface AuthDao {
@@ -15,4 +17,10 @@ public interface AuthDao {
 	public void bindBankAccount(long cardNumber, long auth_id);
 
 	public void deleteUserById(long auth_id);
+
+	public Authentication getById(Long l);
+
+	public List<Authentication> getInsList();
+
+	public List<Authentication> getUserList();
 }

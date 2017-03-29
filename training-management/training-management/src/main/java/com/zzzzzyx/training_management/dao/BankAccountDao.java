@@ -8,4 +8,6 @@ public interface BankAccountDao {
 
 	long getMoneyByNoAndPsw(BankAccount bankAccount);
 
+	long getMoneyByBankAccountNumber(long bankAccountNo);
+
 }

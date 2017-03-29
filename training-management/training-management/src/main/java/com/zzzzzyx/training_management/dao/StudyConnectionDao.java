@@ -12,4 +12,16 @@ public interface StudyConnectionDao {
 
 	void deleteConnectionByCourseIdAndUserID(long courseId, long userId);
 
+	List<StudyConnection> getListByCourseId(long courseId);
+
+	void setMarkById(long id, int mark);
+
+	StudyConnection getById(long connectionId);
+
+	void deleteConnectionByConnectionId(long connectionId);
+
+	List<StudyConnection> getListByInsId(Long ins_id);
+
+	List<StudyConnection> getListByUserId(Long user_id);
+
 }

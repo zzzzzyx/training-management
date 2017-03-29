@@ -35,9 +35,7 @@ public class Course {
 		this.institution_id = classChange.institution_id;
 		this.status = classChange.course_status;
 	}
-	
-	
-	
+
 	@Override
 	public String toString() {
 		return "[课程名为： " + courseName + ", 教师名为：" + teacherName + ", 价格为：" + price + ", 开始时间为："

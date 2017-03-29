@@ -8,12 +8,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>登录</title>
 </head>
 <body>
+<div class="col-md-6 center"  style="
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;padding-top : 5em;">
     <h2>机构首页</h2>
-    <a href="openClass.do"><input type="button" value="申请开设班级"></a>
-    <table border="1">
+    <table  class="table">
 	<caption>已开设的课程</caption>
 		<thead>
 			<tr>
@@ -37,12 +44,16 @@
 			<td><jsp:getProperty name="singleCourse" property="startTime" /></td>
 			<td><jsp:getProperty name="singleCourse" property="endTime" /></td>
 			<td><jsp:getProperty name="singleCourse" property="status" /></td>
-			<td><a href="change.do?courseId=<%=courseList.get(i).getId()%>"><input type="button" value="申请修改"></a>
-			<a href="delete.do?courseId=<%=courseList.get(i).getId()%>"><input type="button" value="申请删除"></a></td>
+			<td><a href="change.do?courseId=<%=courseList.get(i).getId()%>"><input type="button" class="btn btn-primary" value="申请修改"></a>
+			<a href="delete.do?courseId=<%=courseList.get(i).getId()%>"><input type="button" class="btn btn-danger" value="申请删除"></a>
+			<a href="studentList.do?courseId=<%=courseList.get(i).getId()%>"><input type="button" class="btn btn-info" value="查看学员列表"></a></td>
 		</tr>
 		<% } %>
 			
 		</tbody>
 	</table>
+	<a href="openClass.do"><input type="button" class="btn btn-warning" value="申请开设班级"></a>
+	<a href="showStatistics.do"><input type="button" class="btn btn-primary" value="查看统计信息"></a>
+	</div>
 </body>
 </html>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.zzzzzyx.training_management.dao.CourseDao;
 import com.zzzzzyx.training_management.model.Course;
+import com.zzzzzyx.training_management.vo.Course4UserVO;
 
 @Repository
 public class CourseDaoImpl implements CourseDao {
@@ -58,11 +59,22 @@ public class CourseDaoImpl implements CourseDao {
 		return criteria.list();
 	}
 
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<Course> getAllAttendingCourseByUserId(long user_id) {
+//		List<Course> l = sessionFactory.getCurrentSession().createQuery(
+//				"select c from StudyConnection sc,Course c where sc.user_id = :user_id and c.id=sc.course_id")
+//				.setLong("user_id", user_id).list();
+//		return l;
+//	}
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Course> getAllAttendingCourseByUserId(long user_id) {
-		List<Course> l = sessionFactory.getCurrentSession().createQuery(
-				"select c from StudyConnection sc,Course c where sc.user_id = :user_id and c.id=sc.course_id")
+	public List<Course4UserVO> getAllAttendingCourseVOByUserId(long user_id) {
+		List<Course4UserVO> l = sessionFactory.getCurrentSession().createQuery(
+				"select new com.zzzzzyx.training_management.vo.Course4UserVO(c.id,c.courseName, c.teacherName"
+				+ ", c.price, c.startTime, c.endTime, c.institution_id, c.status, sc.mark, sc.isFinished) "
+				+ "from StudyConnection sc,Course c where sc.user_id = :user_id and c.id=sc.course_id")
 				.setLong("user_id", user_id).list();
 		return l;
 	}

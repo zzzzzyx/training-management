@@ -40,4 +40,55 @@ public class StudyConnectionDaoImpl implements StudyConnectionDao {
 		sessionFactory.getCurrentSession().delete(sc);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<StudyConnection> getListByCourseId(long courseId) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(StudyConnection.class);
+		criteria.add(Restrictions.eq("course_id", courseId));
+		return criteria.list();
+	}
+
+	@Override
+	public void setMarkById(long id, int mark) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(StudyConnection.class);
+		criteria.add(Restrictions.eq("id", id));
+		StudyConnection sc = (StudyConnection) criteria.uniqueResult();
+		sc.setMark(mark);
+		if(mark > 0){
+			sc.setFinished(true);
+		}
+		sessionFactory.getCurrentSession().save(sc);
+	}
+
+	@Override
+	public StudyConnection getById(long connectionId) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(StudyConnection.class);
+		criteria.add(Restrictions.eq("id", connectionId));
+		return (StudyConnection) criteria.uniqueResult();
+	}
+
+	@Override
+	public void deleteConnectionByConnectionId(long connectionId) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(StudyConnection.class);
+		criteria.add(Restrictions.eq("id", connectionId));
+		StudyConnection sc = (StudyConnection) criteria.uniqueResult();
+		sessionFactory.getCurrentSession().delete(sc);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<StudyConnection> getListByInsId(Long ins_id) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(StudyConnection.class);
+		criteria.add(Restrictions.eq("institution_id", ins_id));
+		return criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<StudyConnection> getListByUserId(Long user_id) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(StudyConnection.class);
+		criteria.add(Restrictions.eq("user_id", user_id));
+		return criteria.list();
+	}
+
 }

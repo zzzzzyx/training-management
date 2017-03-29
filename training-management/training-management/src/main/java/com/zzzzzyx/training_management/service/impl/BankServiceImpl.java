@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zzzzzyx.training_management.dao.AuthDao;
 import com.zzzzzyx.training_management.dao.BankAccountDao;
+import com.zzzzzyx.training_management.dao.UserDao;
 import com.zzzzzyx.training_management.dao.WaitingPaymentDao;
+import com.zzzzzyx.training_management.model.User;
 import com.zzzzzyx.training_management.model.WaitingPayment;
 import com.zzzzzyx.training_management.service.BankService;
 
@@ -18,18 +20,30 @@ public class BankServiceImpl implements BankService {
 
 	@Autowired
 	AuthDao authDao;
-	
+	@Autowired
+	UserDao userDao;
 	@Autowired
 	WaitingPaymentDao waitingPaymentDao;
-	
 	@Autowired
 	BankAccountDao bankAccountDao;
 	
 	@Override
-	public void transferUnderSupervision(long fromUserId, long toUserId, int money,String description) {
+	public void transferUnderSupervision(long fromUserId, long toUserId, int money,String description, boolean isForAttendClass) {
 		
 		long fromCardNumber = authDao.getBankCardNumberById(fromUserId);
 		long toCardNumber = authDao.getBankCardNumberById(toUserId);
+		
+		if(isForAttendClass){
+			User u = userDao.getByUserId(fromUserId);
+			double percent = u.getDiscountPercent();
+			if(percent < 1){
+				int money_discount = (int) (money * percent);
+				description += "ÒÑÓÅ»Ý" + (money - money_discount) + "Ôª¡£";
+				money =  money_discount;
+			}
+			userDao.acumulatePoint(fromUserId, money/10);
+			
+		}
 		
 		WaitingPayment w = new WaitingPayment(); 
 		w.setMoney(money);

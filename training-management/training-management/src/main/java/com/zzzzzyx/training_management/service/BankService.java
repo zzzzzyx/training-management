@@ -6,12 +6,13 @@ import com.zzzzzyx.training_management.model.WaitingPayment;
 
 public interface BankService {
 
-	void transferUnderSupervision(long user_id, long institution_id, int price, String description);
-
 	List<WaitingPayment> getAllWaitingPayment();
 
 	void solvePayment(long paymentId);
 
 	void payActivation(long cardNumber);
+
+	void transferUnderSupervision(long fromUserId, long toUserId, int money, String description,
+			boolean isForAttendClass);
 
 }

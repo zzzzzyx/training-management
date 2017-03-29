@@ -1,5 +1,7 @@
 package com.zzzzzyx.training_management.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -55,6 +57,29 @@ public class AuthDaoImpl implements AuthDao{
 		criteria.add(Restrictions.eq("id", auth_id));
 		Authentication c = (Authentication) criteria.uniqueResult();
 		sessionFactory.getCurrentSession().delete(c);
+	}
+
+	@Override
+	public Authentication getById(Long id) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Authentication.class);
+		criteria.add(Restrictions.eq("id", id));
+		return (Authentication) criteria.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Authentication> getInsList() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Authentication.class);
+		criteria.add(Restrictions.eq("userKind", Authentication.UserKind_Institution));
+		return criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Authentication> getUserList() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Authentication.class);
+		criteria.add(Restrictions.eq("userKind", Authentication.UserKind_User));
+		return criteria.list();
 	}
 
 	

@@ -34,6 +34,16 @@ public class BankAccountDaoImpl implements BankAccountDao {
 		}
 		return ((BankAccount)criteria.uniqueResult()).getMoney();
 	}
+
+	@Override
+	public long getMoneyByBankAccountNumber(long bankAccountNo) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(BankAccount.class);
+		criteria.add(Restrictions.eq("cardNumber", bankAccountNo));
+		if(criteria.list().isEmpty()){
+			return -1;
+		}
+		return ((BankAccount)criteria.uniqueResult()).getMoney();
+	}
 	
 	
 }

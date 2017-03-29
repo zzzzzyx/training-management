@@ -14,32 +14,31 @@ public class StudyConnection {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
 	long user_id;
+	String username;
 	long course_id;
 	long institution_id;
-	String paymentMethod;
 	int mark;
+	boolean isFinished;
 	boolean isUser;//学员是否为会员
-	boolean nameIfNotUser;
-	
-	public static final String PaymentMethod_cash = "cash";
-	public static final String PaymentMethod_card = "card";
-	
-	public StudyConnection() {
-	}
-	
-	
 
+	
+	public boolean isFinished() {
+		return isFinished;
+	}
+	public void setFinished(boolean isFinished) {
+		this.isFinished = isFinished;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public boolean isUser() {
 		return isUser;
 	}
 	public void setUser(boolean isUser) {
 		this.isUser = isUser;
-	}
-	public boolean isNameIfNotUser() {
-		return nameIfNotUser;
-	}
-	public void setNameIfNotUser(boolean nameIfNotUser) {
-		this.nameIfNotUser = nameIfNotUser;
 	}
 	public long getId() {
 		return id;
@@ -71,14 +70,6 @@ public class StudyConnection {
 
 	public void setInstitution_id(long institution_id) {
 		this.institution_id = institution_id;
-	}
-
-	public String getPaymentMethod() {
-		return paymentMethod;
-	}
-
-	public void setPaymentMethod(String paymentMethod) {
-		this.paymentMethod = paymentMethod;
 	}
 
 	public int getMark() {

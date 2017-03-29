@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,6 +45,19 @@ public class QualificationController {
     public String withdraw(HttpSession session){
 		authService.withdrawUser((long)session.getAttribute("auth_id"));
 		return "redirect:../index.do";
+    }
+	
+	@RequestMapping(value = "user/showCardLevel.do", method = RequestMethod.GET)
+    public String showCardLevel(ModelMap model, HttpSession session){
+		long point = authService.getPoint((long)session.getAttribute("auth_id"));
+		model.addAttribute("point", point);
+		return "user/showCardLevel";
+    }
+	
+	@RequestMapping(value = "user/pointToCash.do", method = RequestMethod.GET)
+    public String pointToCash(ModelMap model, HttpSession session){
+		authService.pointToCash((long)session.getAttribute("auth_id"));
+		return "redirect:showCardLevel.do";
     }
 	
 }

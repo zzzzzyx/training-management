@@ -12,4 +12,10 @@ public interface UserDao {
 
 	void deleteUserById(long auth_id);
 
+	long getPointByUserId(long user_id);
+
+	void setPointToZero(long user_id);
+
+	void acumulatePoint(long fromUserId, int i);
+
 }
