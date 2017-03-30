@@ -16,7 +16,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;padding-top : 5em;">
-    <div class="col-md-3"><h2>登录</h2></div>
+<h2>登录</h2>
 	<form:form method="POST" action="login.do">
    <table class="table">
     <tr>

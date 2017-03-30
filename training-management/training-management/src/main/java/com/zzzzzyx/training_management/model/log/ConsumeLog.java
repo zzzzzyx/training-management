@@ -29,10 +29,10 @@ public class ConsumeLog {
 	
 	public String getTitle(){
 		switch(consumeKind){
-		case ConsumeKind_activation: return "ÕË»§¼¤»î";
-		case ConsumeKind_attend: return "²Î¼Ó¿Î³Ì";
-		case ConsumeKind_refund: return "ÍË¿î";
-		default: return "Òì³£";
+		case ConsumeKind_activation: return "æ¿€æ´»";
+		case ConsumeKind_attend: return "é¢„å®š";
+		case ConsumeKind_refund: return "é€€æ¬¾";
+		default: return "ï¿½ì³£";
 		}
 	}
 

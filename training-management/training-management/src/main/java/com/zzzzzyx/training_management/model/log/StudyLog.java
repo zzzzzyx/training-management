@@ -29,11 +29,11 @@ public class StudyLog {
 	
 	public String getTitle(){
 		switch(logKind){
-		case LogKind_attend: return "Ԥ��";
-		case LogKind_leaveBeforeStart: return "�˶�";
-		case LogKind_leaveAfterStart: return "�˿�";
-		case LogKind_finish: return "ѧϰ";
-		default: return "�쳣";
+		case LogKind_attend: return "预定";
+		case LogKind_leaveBeforeStart: return "退订";
+		case LogKind_leaveAfterStart: return "退课";
+		case LogKind_finish: return "完成";
+		default: return "�쳣";
 		}
 	}
 	
