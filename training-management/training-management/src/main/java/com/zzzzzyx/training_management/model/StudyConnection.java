@@ -19,7 +19,7 @@ public class StudyConnection {
 	long institution_id;
 	int mark;
 	boolean isFinished;
-	boolean isUser;//学员是否为会员
+	boolean isUser;
 
 	
 	public boolean isFinished() {

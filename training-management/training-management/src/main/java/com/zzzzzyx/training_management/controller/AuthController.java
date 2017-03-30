@@ -34,9 +34,9 @@ public class AuthController {
     		
     		switch(realUser.getUserKind()){
 			case Authentication.UserKind_Institution:return "redirect:institution/index.do";
-			case Authentication.UserKind_Manager:return "redirect:manager/index.do";
+			case Authentication.UserKind_Manager:return "redirect:management/index.do";
 			case Authentication.UserKind_User:return "redirect:user/index.do";
-			default: return "redirect:index.do";//不应该跳入此项
+			default: return "redirect:index.do";
     		}
     	}
     }

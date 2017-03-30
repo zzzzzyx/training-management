@@ -95,7 +95,7 @@ public class AuthServiceImpl implements AuthService {
         long dayDiv = user.getLastActivationTillToday();
         
         if(dayDiv > 365 * 2){
-        	this.withdrawUser(auth_id);//超过一年，注销账户
+        	this.withdrawUser(auth_id);
         	return true;
         }
         else if(dayDiv > 365){

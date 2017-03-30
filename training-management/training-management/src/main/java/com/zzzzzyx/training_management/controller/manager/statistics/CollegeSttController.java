@@ -17,7 +17,7 @@ public class CollegeSttController {
 	@Autowired
 	LogService logService;
 
-	@RequestMapping(value = "manager/collegeStatistics.do", method = RequestMethod.GET)
+	@RequestMapping(value = "management/collegeStatistics.do", method = RequestMethod.GET)
 	public String collegeStatisticsIndex(ModelMap model) {
 
 		List<ConsumeLog> activationLogList = logService.getCompleteActivationLogList();

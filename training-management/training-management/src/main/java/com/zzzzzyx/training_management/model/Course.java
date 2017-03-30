@@ -38,8 +38,8 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return "[¿Î³ÌÃûÎª£º " + courseName + ", ½ÌÊ¦ÃûÎª£º" + teacherName + ", ¼Û¸ñÎª£º" + price + ", ¿ªÊ¼Ê±¼äÎª£º"
-				+ startTime + ", ½áÊøÊ±¼äÎª£º" + endTime + ", ×´Ì¬Îª£º" + status + "]";
+		return "[è¯¾ç¨‹åï¼š" + courseName + ", æ•™å¸ˆåï¼š" + teacherName + ",ä»·æ ¼ï¼š" + price + ", å¼€å§‹æ—¶é—´:"
+				+ startTime + ", ç»“æŸæ—¶é—´:" + endTime + ", çŠ¶æ€ï¼š" + status + "]";
 	}
 
 

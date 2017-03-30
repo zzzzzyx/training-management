@@ -29,7 +29,6 @@ public class ClassChange {
 	public static final String ChangeKind_delete = "delete";
 	public ClassChange() {
 		super();
-		// TODO 自动生成的构造函数存根
 	}
 	public ClassChange(Course course) {
 		this.course_id = course.id;

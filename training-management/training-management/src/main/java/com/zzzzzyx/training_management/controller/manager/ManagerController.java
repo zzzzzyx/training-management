@@ -22,7 +22,7 @@ public class ManagerController {
 	@Autowired
 	BankService bankService;
 	
-    @RequestMapping(value = "manager/index.do", method = RequestMethod.GET)
+    @RequestMapping(value = "management/index.do", method = RequestMethod.GET)
     public ModelAndView index(ModelMap model){
     	List<ClassChange> classChangelist = classService.getAllClassChange();
     	List<WaitingPayment> waitingPaymentList = bankService.getAllWaitingPayment();

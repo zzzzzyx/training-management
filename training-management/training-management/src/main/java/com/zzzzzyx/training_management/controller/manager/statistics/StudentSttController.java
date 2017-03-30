@@ -21,7 +21,7 @@ public class StudentSttController {
 	@Autowired
 	StudyService studyService;
 	
-    @RequestMapping(value = "manager/userStatistics.do", method = RequestMethod.GET)
+    @RequestMapping(value = "management/userStatistics.do", method = RequestMethod.GET)
     public String insStatisticsIndex(ModelMap model){
     	
     	List<UserVO> userList = statisticsService.getUserList();
@@ -30,7 +30,7 @@ public class StudentSttController {
         return "manager/userStatistics/index";
     }
     
-    @RequestMapping(value = "manager/showAttendingCourse.do", method = RequestMethod.GET)
+    @RequestMapping(value = "management/showAttendingCourse.do", method = RequestMethod.GET)
     public String showAttendingCourse(ModelMap model, long userId){
     	
     	List<Course4UserVO> attendingCourseList = studyService.getAttendingCourseVOListByUserId(userId);

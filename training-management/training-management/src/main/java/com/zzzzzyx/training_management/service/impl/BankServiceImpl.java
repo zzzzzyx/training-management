@@ -38,7 +38,7 @@ public class BankServiceImpl implements BankService {
 			double percent = u.getDiscountPercent();
 			if(percent < 1){
 				int money_discount = (int) (money * percent);
-				description += "ÒÑÓÅ»Ý" + (money - money_discount) + "Ôª¡£";
+				description += "ï¼Œå·²ä¼˜æƒ " + (money - money_discount) + "å…ƒã€‚";
 				money =  money_discount;
 			}
 			userDao.acumulatePoint(fromUserId, money/10);

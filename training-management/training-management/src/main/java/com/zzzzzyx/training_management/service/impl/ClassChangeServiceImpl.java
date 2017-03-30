@@ -83,7 +83,7 @@ public class ClassChangeServiceImpl implements ClassChangeService {
 	public void changeClass(ClassChange newClassChange, long ins_id) {
 		newClassChange.setChangeKind(ClassChange.ChangeKind_change);
 		newClassChange.setInstitution_id(ins_id);
-		newClassChange.setDescription("¸ü¸ÄÇ°£º " + courseDao.getCourseById(newClassChange.getCourse_id()));
+		newClassChange.setDescription("æ›´æ”¹åçš„è¯¾ç¨‹ä¸ºï¼š " + courseDao.getCourseById(newClassChange.getCourse_id()));
 		classChangeDao.save(newClassChange);
 	}
 

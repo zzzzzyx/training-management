@@ -39,7 +39,7 @@ public class StudyServiceImpl implements StudyService {
 		List<Course> availableList = courseDao.getAvailableCourseList();
 		List<Long> connectingCourseIdList = studyConnectionDao.getConnectingCourseIdListByUserId(user_id);
 		
-		Iterator<Course> iterator = availableList.iterator();//ÎªÁË½â¾ö±éÀúÊ±É¾³ıµÄÎÊÌâ£¬Ê¹ÓÃµü´úÆ÷
+		Iterator<Course> iterator = availableList.iterator();
 		while(iterator.hasNext()){
 			if(connectingCourseIdList.contains(iterator.next().getId())){
 				iterator.remove();
@@ -65,7 +65,7 @@ public class StudyServiceImpl implements StudyService {
 		logService.logConsume(ConsumeLog.ConsumeKind_attend, user_id, course_id, course.getInstitution_id(), course.getPrice());
 		
 		bankService.transferUnderSupervision(user_id, course.getInstitution_id(), course.getPrice(),
-				"User(id:" + user_id + ") ÉêÇë¼ÓÈë¿Î³Ì(id:" + course_id + ") holding by institution(id:"
+				"User(id:" + user_id + ") é¢„å®šäº†è¯¾ç¨‹(id:" + course_id + ") holding by institution(id:"
 				 + course.getInstitution_id() + ").", true);
 	}
 
@@ -80,16 +80,16 @@ public class StudyServiceImpl implements StudyService {
 			logService.logConsume(ConsumeLog.ConsumeKind_refund, userId, courseId, course.getInstitution_id(), course.getPrice());
 			
 			bankService.transferUnderSupervision(course.getInstitution_id(), userId, course.getPrice(),
-					"User(id:" + userId + ") ÉêÇëÈ¡ÏûÔ¤¶©¿Î³Ì(¿Î³Ìid:" + courseId + ") holding by institution(id:"
-					 + course.getInstitution_id() + "), ÏµÍ³ÅĞ¶¨È«¶îÍË¿î.", false);
+					"User(id:" + userId + ") é€€è®¢äº†è¯¾ç¨‹(è¯¾ç¨‹id:" + courseId + ") holding by institution(id:"
+					 + course.getInstitution_id() + "), ç³»ç»Ÿåˆ¤å®šå…¨é¢é€€æ¬¾.", false);
 			break;
 		case Course.Status_studying:
 			
 			logService.logStudy(StudyLog.LogKind_leaveAfterStart, userId, courseId, course.getInstitution_id());
 			
 			bankService.transferUnderSupervision(course.getInstitution_id(), userId, course.getPrice()/5,
-					"User(id:" + userId + ") ÉêÇëÈ¡ÏûÍË³ö½øĞĞÖĞµÄ¿Î³Ì(¿Î³Ìid:" + courseId + ") holding by institution(id:"
-					 + course.getInstitution_id() + "), ÏµÍ³ÅĞ¶¨ÍË¿î20%.", false);
+					"User(id:" + userId + ") é€€è¯¾äº†è¯¾ç¨‹(è¯¾ç¨‹id:" + courseId + ") holding by institution(id:"
+					 + course.getInstitution_id() + "), ç³»ç»Ÿåˆ¤å®šé€€æ¬¾20%.", false);
 			break;
 		}
 	}
@@ -115,13 +115,13 @@ public class StudyServiceImpl implements StudyService {
 	public void deleteStudent(long connectionId) {
 		StudyConnection sc = studyConnectionDao.getById(connectionId);
 		Course course = courseDao.getCourseById(sc.getCourse_id());
-		if(sc.isUser()){//Èç¹ûÊÇ»áÔ±£¬¾ÍÍË¿î
+		if(sc.isUser()){//ï¿½ï¿½ï¿½ï¿½Ç»ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½
 			
 			logService.logStudy(StudyLog.LogKind_leaveAfterStart, sc.getUser_id(), sc.getCourse_id(), course.getInstitution_id());
 			
 			bankService.transferUnderSupervision(course.getInstitution_id(), sc.getUser_id(), course.getPrice(),
-				"»ú¹¹(id:" + sc.getInstitution_id() + ") ÉêÇë½«Ñ§ÉúÇ¿ÖÆÌß³ö¿Î³Ì(¿Î³Ìid:" + sc.getCourse_id() + ") " + "Ìß³öÑ§Éú±àºÅÎª£º"
-						+ sc.getUser_id() + ", ÏµÍ³ÅĞ¶¨È«¶îÍË¿î.", false);
+				"æœºæ„(id:" + sc.getInstitution_id() + ") å¼€è®¾çš„è¯¾ç¨‹(è¯¾ç¨‹id:" + sc.getCourse_id() + ") " + "å¼ºåˆ¶å°†å­¦ç”Ÿ"
+						+ sc.getUser_id() + "é€€è¯¾, ç³»ç»Ÿåˆ¤å®šå…¨é¢é€€æ¬¾.", false);
 		}
 		studyConnectionDao.deleteConnectionByConnectionId(connectionId);
 

@@ -33,7 +33,7 @@ public class StudyLog {
 		case LogKind_leaveBeforeStart: return "退订";
 		case LogKind_leaveAfterStart: return "退课";
 		case LogKind_finish: return "完成";
-		default: return "�쳣";
+		default: return "异常";
 		}
 	}
 	

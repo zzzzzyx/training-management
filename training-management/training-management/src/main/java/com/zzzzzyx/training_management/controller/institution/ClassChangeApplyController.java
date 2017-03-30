@@ -57,9 +57,9 @@ public class ClassChangeApplyController {
 	@ModelAttribute("statusList")
 	public Map<String, String> getStatusList(){
 		Map<String, String> statusList = new HashMap<String, String>();
-		statusList.put(Course.Status_waiting, "µÈ´ı¿ª¿Î");
-		statusList.put(Course.Status_studying, "ÒÑ¿ª¿Î");
-		statusList.put(Course.Status_end, "ÒÑ½áÊø");
+		statusList.put(Course.Status_waiting, "ç­‰å¾…å¼€è¯¾");
+		statusList.put(Course.Status_studying, "ä¸Šè¯¾ä¸­");
+		statusList.put(Course.Status_end, "å·²ç»“æŸ");
 		return statusList;
 	}
 }

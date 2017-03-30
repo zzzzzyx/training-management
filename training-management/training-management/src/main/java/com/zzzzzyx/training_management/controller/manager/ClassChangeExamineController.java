@@ -18,19 +18,19 @@ public class ClassChangeExamineController {
 	@Autowired
 	BankService bankService;
 	
-	@RequestMapping(value = "manager/allow.do", method = RequestMethod.GET)
+	@RequestMapping(value = "management/allow.do", method = RequestMethod.GET)
     public String allow(ModelMap model, long changeId){
 		classService.allowChange(changeId);
 		return "redirect:index.do";
     }
 	
-	@RequestMapping(value = "manager/deny.do", method = RequestMethod.GET)
+	@RequestMapping(value = "management/deny.do", method = RequestMethod.GET)
     public String deny(ModelMap model, long changeId){
 		classService.denyChange(changeId);
     	return "redirect:index.do";
     }
 	
-	@RequestMapping(value = "manager/solve.do", method = RequestMethod.GET)
+	@RequestMapping(value = "management/solve.do", method = RequestMethod.GET)
     public String solveWaitingPayment(ModelMap model, long paymentId){
 		bankService.solvePayment(paymentId);
     	return "redirect:index.do";

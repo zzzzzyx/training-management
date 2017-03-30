@@ -32,7 +32,7 @@ public class ConsumeLog {
 		case ConsumeKind_activation: return "激活";
 		case ConsumeKind_attend: return "预定";
 		case ConsumeKind_refund: return "退款";
-		default: return "�쳣";
+		default: return "异常";
 		}
 	}
 
