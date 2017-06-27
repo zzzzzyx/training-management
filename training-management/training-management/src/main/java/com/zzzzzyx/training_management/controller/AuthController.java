@@ -24,19 +24,32 @@ public class AuthController {
         return new ModelAndView("login", "command", new Authentication());
     }
     
+    @RequestMapping(value = "/illustration.do", method = RequestMethod.GET)
+    public String illustration(){
+        return "illustration";
+    }
+    
     @RequestMapping(value = "/login.do", method = RequestMethod.POST)
-    public String login(@ModelAttribute("SpringWeb")Authentication user, ModelMap model){
+    public String login(@ModelAttribute("SpringWeb")Authentication user, ModelMap model,String type){
     	Authentication realUser = userService.login(user);
     	if(realUser == null){
     		return "loginFail";
     	}else{
     		model.addAttribute("auth_id", realUser.getId());
     		
-    		switch(realUser.getUserKind()){
-			case Authentication.UserKind_Institution:return "redirect:institution/index.do";
-			case Authentication.UserKind_Manager:return "redirect:management/index.do";
-			case Authentication.UserKind_User:return "redirect:user/index.do";
-			default: return "redirect:index.do";
+    		if(type.startsWith(">")){//后台登陆
+    			switch(realUser.getUserKind()){
+    			case Authentication.UserKind_Institution:return "redirect:chart/institution/index.do";
+    			case Authentication.UserKind_Manager:return "redirect:chart/management/index.do";
+    			default: return "redirect:index.do";
+    			}
+    		}else{//普通登陆
+    			switch(realUser.getUserKind()){
+    			case Authentication.UserKind_Institution:return "redirect:institution/index.do";
+    			case Authentication.UserKind_Manager:return "redirect:management/index.do";
+    			case Authentication.UserKind_User:return "redirect:user/index.do";
+    			default: return "redirect:index.do";
+    			}
     		}
     	}
     }

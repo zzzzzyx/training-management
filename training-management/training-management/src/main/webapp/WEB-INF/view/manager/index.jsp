@@ -9,15 +9,9 @@
 	type="java.util.List<com.zzzzzyx.training_management.model.WaitingPayment>" scope="request"></jsp:useBean>
 <jsp:useBean id="singleWaitingPayment" class="com.zzzzzyx.training_management.model.WaitingPayment" scope="page"></jsp:useBean>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>经理首页</title>
-</head>
+<jsp:include page="/WEB-INF/layout/header.jsp">
+  <jsp:param name="title" value="manager main page" /> 
+</jsp:include>
 <body>
 <div class="col-md-12 center"  style="
     float: none;

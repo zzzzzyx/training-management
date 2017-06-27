@@ -1,15 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>登录</title>
-</head>
+	
+<jsp:include page="/WEB-INF/layout/header.jsp">
+  <jsp:param name="title" value="login" /> 
+</jsp:include>
 <body>
 <div class="col-md-3 center"  style="
     float: none;
@@ -29,10 +24,13 @@
     </tr>
     <tr>
         <td>
-            <input type="submit" class="btn btn-primary pull-left" value="登录"/>
+            <input type="submit" class="btn btn-primary" name="type" value="登录"/>
+            
+			<a href="register.do"><input type="button" class="btn btn-warning" value="注册"></a>
         </td>
         <td>
-        	<a href="register.do"><input type="button" class="btn btn-primary pull-right" value="注册"></a>
+        	<input type="submit" class="btn btn-danger" name="type" value=">后台登录<"/>
+        	<a href="illustration.do"><input type="button" class="btn btn-info pull-right" value="查看说明"></a>
         </td>
     </tr>
     

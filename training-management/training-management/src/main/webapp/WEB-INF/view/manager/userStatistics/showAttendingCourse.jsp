@@ -7,15 +7,9 @@
 	type="java.util.List<com.zzzzzyx.training_management.vo.Course4UserVO>" scope="request"></jsp:useBean>
 <jsp:useBean id="singleAttendingCourse" class="com.zzzzzyx.training_management.vo.Course4UserVO" scope="page"></jsp:useBean>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>此学员已参加的课程</title>
-</head>
+<jsp:include page="/WEB-INF/layout/header.jsp">
+  <jsp:param name="title" value="user's course" /> 
+</jsp:include>
 <body>
 <div class="col-md-3 center"  style="
     float: none;
