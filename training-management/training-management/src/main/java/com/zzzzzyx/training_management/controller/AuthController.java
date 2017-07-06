@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zzzzzyx.training_management.dao.GenerateDataDao;
 import com.zzzzzyx.training_management.model.Authentication;
 import com.zzzzzyx.training_management.service.AuthService;
 
@@ -18,6 +19,8 @@ public class AuthController {
 
 	@Autowired
 	private AuthService userService;
+	@Autowired
+	private GenerateDataDao genarateDataService;
 	
     @RequestMapping(value = "/index.do", method = RequestMethod.GET)
     public ModelAndView index(){
@@ -26,6 +29,7 @@ public class AuthController {
     
     @RequestMapping(value = "/illustration.do", method = RequestMethod.GET)
     public String illustration(){
+    	genarateDataService.generateData();
         return "illustration";
     }
     
